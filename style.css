@@ -72,6 +72,9 @@ img {
 .h-\[1px\] {
   height: 1px;
 }
+.h-16 {
+  height: 4rem;
+}
 .h-screen {
   height: 100vh;
 }
@@ -98,6 +101,9 @@ img {
 .justify-start {
   justify-content: flex-start;
 }
+.justify-center {
+  justify-content: center;
+}
 .justify-end {
   justify-content: flex-end;
 }
@@ -116,6 +122,9 @@ img {
 .col-span-12 {
   grid-column: span 12 / span 12;
 }
+.fixed {
+  position: fixed;
+}
 
 /* Margin */
 .mx-auto {
@@ -132,6 +141,9 @@ img {
 .mt-4 {
   margin-top: 1rem;
 }
+.mb-4 {
+  margin-bottom: 1rem;
+}
 
 /* Border & Roundness */
 .rounded-full {
@@ -142,6 +154,9 @@ img {
 }
 .border-solid {
   border-style: solid;
+}
+.border-2 {
+  border-width: 2px;
 }
 .border-x-0 {
   border-left-width: 0;
@@ -191,6 +206,9 @@ img {
 .bg-yellow-600 {
   background-color: rgb(202 138 4);
 }
+.bg-white {
+  background-color: rgb(255 255 255);
+}
 
 /* Padding */
 .px-2 {
@@ -228,8 +246,14 @@ img {
 .pt-4 {
   padding-top: 1rem;
 }
+.pt-20 {
+  padding-top: 5rem;
+}
 
 /* Text Alignment */
+.text-center {
+  text-align: center;
+}
 .text-end {
   text-align: end;
 }
@@ -271,6 +295,15 @@ img {
 .text-white {
   color: rgb(255 255 255);
 }
+.text-myCourseVilleGray {
+  color: rgb(136 136 136);
+}
+.text-myCourseVilleBlue {
+  color: rgb(60 136 212);
+}
+.text-myCourseVilleYellow {
+  color: rgb(242 166 59);
+}
 
 /* Text decoration */
 .line-through {
@@ -301,5 +334,9 @@ img {
   }
   .md\:rounded-full {
     border-radius: 9999px;
+  }
+  .md\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
