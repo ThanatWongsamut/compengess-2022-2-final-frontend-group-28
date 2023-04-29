@@ -313,7 +313,7 @@ const renderTodoLists = async () => {
                     </option>
                     <option value="most_important">สำคัญมาก</option>
                     <option value="important">สำคัญ</option>
-                    <option value="normal">ปกติ</option>
+                    <option value="normal">ทั่วไป</option>
                     <option value="not_important">ไม่สำคัญ</option>
                   </select>
                 </div>
