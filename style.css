@@ -95,6 +95,9 @@ p {
 .max-w-3xs {
   max-width: 8.5rem;
 }
+.max-w-2xs {
+  max-width: 12rem;
+}
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -352,5 +355,8 @@ p {
   .md\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
+  }
+  .md\:max-w-2xs {
+    max-width: 12rem;
   }
 }
