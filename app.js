@@ -307,7 +307,7 @@ const renderTodoLists = async () => {
                   </select>
 
                   <select name="edit_priority" id="edit_priority" defaultValue=""
-                    class="py-2 px-2 border-solid border-b-2 border-gray-400">
+                    class="py-2 px-2 border-solid border-b-2 border-gray-400 max-w-3xs">
                     <option value="" disabled selected>
                       ลำดับความสำคัญ
                     </option>
