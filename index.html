@@ -7,18 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Todo List: Home</title>
   <link rel="stylesheet" href="./style.css">
+  <script src="./mcv.js" defer></script>
 </head>
 
-<body>
+<body onload=getUserProfile();>
   <header>
     <div class="w-full h-16 shadow-lg px-4 md:px-12 flex justify-between items-center fixed bg-white">
       <div>
         <span>ยินดีตอนรับ! </span>
-        <span class="font-bold">ธนัส วงศ์สมุทร</span>
+        <span class="font-bold" id="profile_name"></span>
       </div>
 
       <div>
-        <button class="border-solid border-2 px-2 py-2 rounded-lg">ออกจากระบบ</button>
+        <button class="border-solid border-2 px-2 py-2 rounded-lg" onclick=logout()>ออกจากระบบ</button>
       </div>
     </div>
   </header>
@@ -122,7 +123,7 @@
             </select>
           </div>
 
-          <div class="grid grid-cols-12 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
+          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="text-xl font-bold mr-4">sonvoirkmvp</p>
@@ -139,7 +140,7 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-12 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
+          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="text-xl font-bold mr-4">sonvoirkmvp</p>
@@ -156,7 +157,7 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-12 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
+          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="text-xl font-bold mr-4">sonvoirkmvp</p>
@@ -173,7 +174,7 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-12 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
+          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="text-xl font-bold mr-4">sonvoirkmvp</p>
@@ -195,7 +196,7 @@
 
         <!-- เสร็จแล้ว -->
         <div class="w-full gap-4 mt-4">
-          <div class="grid grid-cols-12 w-full shadow-lg rounded-lg px-8 py-4 items-center bg-gray-200">
+          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center bg-gray-200">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="line-through text-xl text-gray-500 font-bold mr-4">
