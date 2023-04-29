@@ -1,5 +1,5 @@
-const frontendIPAddress = '127.0.0.1:5500';
-const backendIPAddress = '127.0.0.1:3000';
+const frontendIPAddress = '44.215.199.124';
+const backendIPAddress = '44.215.199.124:3000';
 
 let allCourses = [];
 
