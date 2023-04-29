@@ -97,7 +97,10 @@ const updateTodoList = async (todo_list_id) => {
   };
 
   await fetch(`http://${backendIPAddress}/todoLists/${todo_list_id}`, requestOptions)
-    .then(async () => await redrawDOM())
+    .then(async () => {
+      enableEdit('');
+      await redrawDOM();
+    })
     .catch((error) => console.log('error', error));
 };
 
