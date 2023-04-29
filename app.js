@@ -288,7 +288,7 @@ const renderTodoLists = async () => {
       } else {
         ongoingTodoListsElement.innerHTML += `
           <div class="shadow-lg rounded-lg px-8 py-8">
-            <form>
+            <form action="javascript:updateTodoList('${todoListData.todo_list_id}')">
               <div class="">
                 <textarea id="edit_title" name="edit_title" class="w-full bg-gray-100 text-lg px-2 py-2 rounded-lg"
                   placeholder="ใส่ชื่องาน/สิ่งที่ต้องทำตรงนี้"></textarea>
@@ -325,7 +325,7 @@ const renderTodoLists = async () => {
 
                 <div class="col-span-12 md:col-span-2 flex justify-end">
                   <button class="px-6 py-2 rounded-lg" onclick="enableEdit('')">ยกเลิก</button>
-                  <button class="bg-blue-600 text-white px-6 py-2 rounded-lg" onclick="updateTodoList('${todoListData.todo_list_id}')">ยืนยัน</button>
+                  <button class="bg-blue-600 text-white px-6 py-2 rounded-lg" type="submit">ยืนยัน</button>
                 </div>
               </div>
             </form>
