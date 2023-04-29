@@ -1,6 +1,8 @@
 const frontendIPAddress = '127.0.0.1:5500';
 const backendIPAddress = '127.0.0.1:3000';
 
+let allCourses = [];
+
 const authorizeApplication = () => {
   window.location.href = `http://${backendIPAddress}/courseville/auth_app`;
 };
@@ -24,6 +26,43 @@ const getUserProfile = async () => {
         data.user.firstname_th + ' ' + data.user.lastname_th;
     })
     .catch((error) => console.error(error));
+};
+
+// Get all courses
+const getAllCourses = async () => {
+  const options = {
+    method: 'GET',
+    credentials: 'include',
+  };
+  await fetch(`http://${backendIPAddress}/courseville/get_courses`, options)
+    .then((response) => response.json())
+    .then((courses) => {
+      allCourses = courses;
+    })
+    .catch((error) => {
+      console.error(error);
+      allCourses = [];
+    });
+
+  await renderCreateCoursesChoices();
+};
+
+// Get all courses and make it create options
+const renderCreateCoursesChoices = async () => {
+  const selectSubjectElement = document.getElementById('create_subject');
+  selectSubjectElement.innerHTML = `<option value="" disabled selected>เลือกวิชา</option>`;
+  allCourses.map((course) => {
+    selectSubjectElement.innerHTML += `<option value="${course.cv_cid}">${course.title}</option>`;
+  });
+};
+
+// Get all courses and make it edit options
+const renderEditCoursesChoices = async () => {
+  const selectSubjectElement = document.getElementById('edit_subject');
+  selectSubjectElement.innerHTML = `<option value="" disabled selected>เลือกวิชา</option>`;
+  allCourses.map((course) => {
+    selectSubjectElement.innerHTML += `<option value="${course.cv_cid}">${course.title}</option>`;
+  });
 };
 
 // Logout

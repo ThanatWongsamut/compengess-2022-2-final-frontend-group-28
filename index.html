@@ -8,9 +8,10 @@
   <title>My Todo List: Home</title>
   <link rel="stylesheet" href="./style.css">
   <script src="./mcv.js" defer></script>
+  <script src="./app.js" defer></script>
 </head>
 
-<body onload=getUserProfile();>
+<body onload="getUserProfile();">
   <header>
     <div class="w-full h-16 shadow-lg px-4 md:px-12 flex justify-between items-center fixed bg-white">
       <div>
@@ -28,50 +29,48 @@
     <div class="h-screen">
       <div class="max-w-4xl mx-auto pt-20">
         <div class="shadow-lg rounded-lg px-8 py-8">
-          <form action="">
+          <form action="javascript:addTodoList()">
             <div class="">
               <textarea id="create_title" name="create_title" class="w-full bg-gray-100 text-lg px-2 py-2 rounded-lg"
-                placeholder="ใส่ชื่องาน/สิ่งที่ต้องทำตรงนี้"></textarea>
+                placeholder="ใส่ชื่องาน/สิ่งที่ต้องทำตรงนี้" required></textarea>
             </div>
 
             <div class="pt-4 grid grid-cols-12 gap-4">
               <div class="col-span-12 md:col-span-5 flex justify-between md:justify-start items-center gap-4">
                 <select name="create_subject" id="create_subject" defaultValue=""
-                  class="py-2 px-2 border-solid border-b-2 border-gray-400">
-                  <option value="" disabled>
+                  class="py-2 px-2 border-solid border-b-2 border-gray-400 max-w-3xs" required>
+                  <option value="" disabled selected>
                     เลือกวิชา
                   </option>
-                  <option value="วิชาที่1">วิชาที่1</option>
-                  <option value="วิชาที่2">วิชาที่2</option>
-                  <option value="วิชาที่3">วิชาที่3</option>
-                  <option value="วิชาที่4">วิชาที่4</option>
                 </select>
 
                 <select name="create_priority" id="create_priority" defaultValue=""
-                  class="py-2 px-2 border-solid border-b-2 border-gray-400">
-                  <option value="" disabled>
+                  class="py-2 px-2 border-solid border-b-2 border-gray-400" required>
+                  <option value="" disabled selected>
                     ลำดับความสำคัญ
                   </option>
                   <option value="most_important">สำคัญมาก</option>
                   <option value="important">สำคัญ</option>
-                  <option value="normal">ปกติ</option>
+                  <option value="normal">ทั่วไป</option>
                   <option value="not_important">ไม่สำคัญ</option>
                 </select>
               </div>
 
               <div class="col-span-12 md:col-span-5 flex justify-between md:justify-start items-center gap-4">
                 <input type="date" id="create_date" name="create_date"
-                  class="py-2 px-2 border-solid border-b-2 border-gray-400"></input>
+                  class="py-2 px-2 border-solid border-b-2 border-gray-400" required></input>
 
                 <input type="time" id="create_time" name="create_time"
-                  class="py-2 px-2 border-solid border-b-2 border-gray-400"></input>
+                  class="py-2 px-2 border-solid border-b-2 border-gray-400" required></input>
               </div>
 
               <div class="col-span-12 md:col-span-2 flex justify-end">
-                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg">เพิ่ม</button>
+                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg" type="submit">เพิ่ม</button>
               </div>
             </div>
           </form>
+
+
         </div>
 
         <hr class="h-[1px] my-8 w-full border-x-0 border-b-0 border-stone-300 text-black" />
@@ -79,27 +78,28 @@
         <div class="shadow-lg rounded-lg md:rounded-full grid grid-cols-12 w-full px-8 py-4 items-center gap-4">
           <div class="col-span-12 md:col-span-6">
             <input id="search_title" name="search_title" class="w-full bg-gray-100 text-lg px-2 py-2 rounded-lg"
-              type="text" placeholder="กรอกคำค้นหาที่นี่" />
+              type="text" placeholder="กรอกคำค้นหาที่นี่" oninput="searchTitleChangeHandler(this)" />
           </div>
 
           <div class="col-span-12 md:col-span-4 flex justify-between">
             <select name="search_priority" id="search_priority" defaultValue=""
-              class="py-2 px-2 border-solid border-b-2 border-gray-400">
+              class="py-2 px-2 border-solid border-b-2 border-gray-400" onchange="searchPriorityChangeHandler(this)">
               <option value="" disabled>
                 ลำดับความสำคัญ
               </option>
+              <option value="all" selected>ทั้งหมด</option>
               <option value="most_important">สำคัญมาก</option>
               <option value="important">สำคัญ</option>
-              <option value="normal">ปกติ</option>
+              <option value="normal">ทั่วไป</option>
               <option value="not_important">ไม่สำคัญ</option>
             </select>
 
             <select name="search_status" id="search_status" defaultValue=""
-              class="py-2 px-2 border-solid border-b-2 border-gray-400">
+              class="py-2 px-2 border-solid border-b-2 border-gray-400" onchange="searchStatusChangeHandler(this)">
               <option value="all" disabled>
                 สถานะ
               </option>
-              <option value="all">ทั้งหมด</option>
+              <option value="all" selected>ทั้งหมด</option>
               <option value="done">เสร็จแล้ว</option>
               <option value="ongoing">ยังไม่เสร็จ</option>
             </select>
@@ -107,23 +107,25 @@
 
           <div class="col-span-12 md:col-span-2">
             <div class="flex justify-end">
-              <button class="bg-blue-600 text-white px-6 py-2 rounded-lg">ค้นหา</button>
+              <button class="bg-blue-600 text-white px-6 py-2 rounded-lg" onclick="renderTodoLists()">ค้นหา</button>
             </div>
           </div>
         </div>
 
-        <!-- ยังไม่เสร็จ -->
         <div class="w-full mt-4">
           <div class="w-full text-end">
             <label for="sort_type">เรียงลำดับวันที่จาก:</label>
 
-            <select name="sort_type" id="sort_type">
-              <option value="ascending">มาถึงเร็วสุด</option>
+            <select name="sort_type" id="sort_type" onchange="sortChangeHandler(this)">
+              <option value="ascending" selected>มาถึงเร็วสุด</option>
               <option value="descending">มาถึงช้าสุด</option>
             </select>
           </div>
+        </div>
 
-          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
+        <!-- ยังไม่เสร็จ -->
+        <div class="w-full" id="ongoing_todo_lists">
+          <!-- <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="text-xl font-bold mr-4">sonvoirkmvp</p>
@@ -138,9 +140,9 @@
               <button class="bg-yellow-600 text-amber-950 px-6 py-2 rounded-lg">แก้ไข</button>
               <button class="bg-green-600 text-white px-6 py-2 rounded-lg">เสร็จสิ้น</button>
             </div>
-          </div>
+          </div> -->
 
-          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
+          <!-- <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="text-xl font-bold mr-4">sonvoirkmvp</p>
@@ -155,9 +157,9 @@
               <button class="bg-yellow-600 text-amber-950 px-6 py-2 rounded-lg">แก้ไข</button>
               <button class="bg-green-600 text-white px-6 py-2 rounded-lg">เสร็จสิ้น</button>
             </div>
-          </div>
+          </div> -->
 
-          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
+          <!-- <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="text-xl font-bold mr-4">sonvoirkmvp</p>
@@ -172,9 +174,9 @@
               <button class="bg-yellow-600 text-amber-950 px-6 py-2 rounded-lg">แก้ไข</button>
               <button class="bg-green-600 text-white px-6 py-2 rounded-lg">เสร็จสิ้น</button>
             </div>
-          </div>
+          </div> -->
 
-          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
+          <!-- <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center mt-4">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="text-xl font-bold mr-4">sonvoirkmvp</p>
@@ -191,12 +193,12 @@
               <button class="bg-yellow-600 text-amber-950 px-6 py-2 rounded-lg">แก้ไข</button>
               <button class="bg-green-600 text-white px-6 py-2 rounded-lg">เสร็จสิ้น</button>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- เสร็จแล้ว -->
-        <div class="w-full gap-4 mt-4">
-          <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center bg-gray-200">
+        <div class="w-full gap-4 mt-4" id="done_todo_lists">
+          <!-- <div class="grid grid-cols-12 gap-4 w-full shadow-lg rounded-lg px-8 py-4 items-center bg-gray-200">
             <div class="col-span-12">
               <div class="flex items-center">
                 <p class="line-through text-xl text-gray-500 font-bold mr-4">
@@ -212,7 +214,7 @@
               <button class="bg-red-600 text-white px-6 py-2 rounded-lg">ลบ</button>
               <button class="bg-indigo-900 text-white px-6 py-2 rounded-lg">ยังไม่เสร็จ</button>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
